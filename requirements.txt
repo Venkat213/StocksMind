@@ -9,3 +9,5 @@ bcrypt
 requests
 mysql-connector-python
 ta
+scikit-learn
+numpy
