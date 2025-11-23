@@ -1,0 +1,10 @@
+streamlit
+yfinance
+pandas
+plotly
+sqlalchemy
+psycopg2-binary
+python-dotenv
+bcrypt
+requests
+mysql-connector-python
