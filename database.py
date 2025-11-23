@@ -36,8 +36,21 @@ def load_config():
 load_config()
 
 # Database Configuration
-# Priority: DATABASE_URL (Cloud) > Local SQLite
-DATABASE_URL = os.getenv("DATABASE_URL")
+# Database Configuration
+# Priority: st.secrets (Cloud) > DATABASE_URL (Env) > Local SQLite
+import streamlit as st
+
+DATABASE_URL = None
+
+# Check Streamlit secrets first (for Cloud)
+if hasattr(st, "secrets") and "DATABASE_URL" in st.secrets:
+    DATABASE_URL = st.secrets["DATABASE_URL"]
+
+# Check Environment variable
+if not DATABASE_URL:
+    DATABASE_URL = os.getenv("DATABASE_URL")
+
+# Fallback to local SQLite
 if not DATABASE_URL:
     DATABASE_URL = "sqlite:///stock_market.db"
 elif DATABASE_URL.startswith("postgres://"):
