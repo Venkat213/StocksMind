@@ -5,7 +5,7 @@ Compares our calculation with expected values
 import sys
 sys.path.insert(0, '.')
 
-from app import get_timeframe_pl
+from streamlit_app import get_timeframe_pl
 
 print("=" * 70)
 print("TCS P/L ACCURACY TEST")

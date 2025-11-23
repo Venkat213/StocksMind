@@ -43,8 +43,11 @@ import streamlit as st
 DATABASE_URL = None
 
 # Check Streamlit secrets first (for Cloud)
-if hasattr(st, "secrets") and "DATABASE_URL" in st.secrets:
-    DATABASE_URL = st.secrets["DATABASE_URL"]
+try:
+    if hasattr(st, "secrets") and "DATABASE_URL" in st.secrets:
+        DATABASE_URL = st.secrets["DATABASE_URL"]
+except Exception:
+    pass  # Secrets not available (local run)
 
 # Check Environment variable
 if not DATABASE_URL:
